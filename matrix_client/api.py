@@ -879,6 +879,16 @@ class MatrixHttpApi(object):
         content = self._send("GET", "/directory/room/{}".format(quote(room_alias)))
         return content.get("room_id", None)
 
+
+    def list_joined_rooms(self):
+        content = self._send("GET", "/joined_rooms")
+        return content.get("joined_rooms", None)
+    
+
+    def get_room_aliases(self, room_id):
+        content = self._send("GET", f"/rooms/{room_id}/aliases")
+        return content.get("aliases", None)
+
     def set_room_alias(self, room_id, room_alias):
         """Set alias to room id
 
